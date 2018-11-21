@@ -1,91 +1,146 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Test lapa</title>
-</head>
-<style>
-    html{
+    <!--
+      uzmanigi ja rakstam stilu <style> elementa tam jabut
+      ieks <head> elementa, bet vispar jau labak stilu rakstit
+      atseviska faila un pec tam piesaistit sim html ar <link>
+    -->
+    <style>
+      html {
         box-sizing: border-box;
-    }
-    *, *::before, *::after {
+      }
+      *,
+      *::before,
+      *::after {
         box-sizing: inherit;
-    }
-    
-    body {
-        background-color: rgb(200, 191, 214);
-    }
+      }
 
-    .header {
-        background-color: rgb(32, 31, 34);
-        color:white;
+      /*
+        seit varam nonemt margin no body lai lapa sniedzas no vienas browsera
+        malas lidz otrai
+      */
+      body {
         margin: 0;
-        display: block;
-    }
+        background-color: rgb(200, 191, 214);
+      }
 
-    .picture1 {
-        display: block;
+      img {
         width: 100%;
+      }
 
-    }
+      /*
+        tapec ka pec noklusejuma/standarta div jau ir block limena elements
+        tad seit nav nepieciesams noradit display: block; tas nav nepareizi
+        vienkarsi lieka rindina :)
+      */
+      .header {
+        background-color: rgb(32, 31, 34);
+        color: white;
+        padding: 20px;
+      }
 
-    img {
-        width: 100%;
-    }
+      /*
+        nonemam margin no h1 un p lai headeris butu lidz lapas malai
+      */
+      .header h1,
+      .header p {
+        margin: 0;
+      }
 
+      /*
+        Hacks lai izvairitos no nevelamam atstarpem starp inline-block elementiem.
+        Uzliekam konteinerim kas satur musu tris mazos article blokus, font-size: 0
+        un pec tam katram blokam atseviski uzliekam sakotnejo fonta izmeru izmantojot
+        font-size: initial
+        https://css-tricks.com/fighting-the-space-between-inline-block-elements/
+      */
+      .container {
+        font-size: 0;
+        max-width: 960px;
+        margin: 15px auto;
+      }
 
+      .picture1 {
+        padding: 0 5px 15px;
+      }
 
-    .container .articles {
+      /*
+        seit nav obligati ieklaut .container un ta ka zemak izmantojam
+        .articles h2 tad skaidribas labad seit izmantojam tikai .articles
+        tada veida uzreiz ir skaidrs ka iet runa par to pasu .articles
 
+        ta ka seit iet runa par individualiem blokiem kuri ir viens otram blakus
+        margin: 0 auto; isti seit neko nedaris
+
+        tapec ka augsa jau esam noradijusi visiem elementiem izmantot box-sizing: border-box;
+        seit atseviski tas vairs nav nepieciesams
+
+        vertical-align: top;
+        tapec ka bilde nav vienada augstuma vinas nebus viena otrai preti
+        sadi mes pasakam ka visam jasstav pret augsejo kreiso bloka sturi
+      */
+      .articles {
+        font-size: initial;
         display: inline-block;
-        width: 33%;
-        margin: 0 auto;
-        box-sizing: border-box;
+        width: 33.33%;
+        vertical-align: top;
+        padding: 5px;
+      }
 
-    }
-
-    .articles h2 {
+      .articles h2 {
         color: rgb(19, 19, 177);
         font-size: 20px;
         font-weight: bold;
         text-align: left;
-    }
-</style>
-
-<body>
+      }
+    </style>
+  </head>
+  <body>
     <div class="header">
-        <h1 class="">Staro Riga</h1>
-        <p>Popularakie objekti Staro Riga 2018</p>
+      <h1 class="">Staro Riga</h1>
+      <p>Popularakie objekti Staro Riga 2018</p>
     </div>
 
-
-    <div class="picture1">
-        <img src="http://www.latvia.travel/sites/default/files/styles/lightbox/public/events/staro-riga-latvia-travel.jpg?itok=mDqaPH5Q"
-            alt="Staro Riga 2018" />
-    </div>
-
+    <!--
+      izskatas ka bus aizmirsies .container div aizvert
+      ieliekam ari .picture1 ieks container lai visam apaksejam kopa un lielajai bildei
+      butu vienads platums un visas bildes butu smuki centra
+    -->
     <div class="container">
-        <div class="articles">
-            <img src="http://kokteilis.la.lv/uploads/2018/11/Staro_Riga_Gaismas_puces_1.jpg" />
+      <div class="picture1">
+        <img
+          src="http://www.latvia.travel/sites/default/files/styles/lightbox/public/events/staro-riga-latvia-travel.jpg?itok=mDqaPH5Q"
+          alt="Staro Riga 2018"
+        />
+      </div>
 
-            <h2>Virsraksts2</h2>
-            <p>teksts</p>
-        </div>
+      <div class="articles">
+        <img
+          src="http://kokteilis.la.lv/uploads/2018/11/Staro_Riga_Gaismas_puces_1.jpg"
+        />
 
-        <div class="articles">
-            <img src="https://cdn1.img.sputniknewslv.com/images/322/21/3222110.jpg" />
-            <h2>Virsraksts2</h2>
-            <p>teksts</p>
-        </div>
+        <h2>Virsraksts2</h2>
+        <p>teksts</p>
+      </div>
 
-        <div class="articles">
-            <img src="http://www.staburags.lv/uploads/thumbnails/680x455/articles/2014/11/105126__5460dca34670b.jpg.jpg" />
-            <h2>Virsraksts2</h2>
-            <p>teksts</p>
-        </div>
+      <div class="articles">
+        <img
+          src="https://cdn1.img.sputniknewslv.com/images/322/21/3222110.jpg"
+        />
+        <h2>Virsraksts2</h2>
+        <p>teksts</p>
+      </div>
 
-
-
-</body>
-
+      <div class="articles">
+        <img
+          src="http://www.staburags.lv/uploads/thumbnails/680x455/articles/2014/11/105126__5460dca34670b.jpg.jpg"
+        />
+        <h2>Virsraksts2</h2>
+        <p>teksts</p>
+      </div>
+      <!-- sis bija piemirsies :) -->
+    </div>
+  </body>
 </html>
